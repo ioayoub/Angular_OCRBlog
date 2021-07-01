@@ -1,13 +1,13 @@
 <div class="container">
     <ul class="list-group">
-        <li class="list-group-item" *ngFor='let article of articles'>
-            <div [ngClass]="{'list-group-item:true, list-group-item-success': articlesNbLikes > 0,
-            'list-group-item-danger': articlesNbLikes < 0 }">
+        <li class="list-group-item" *ngFor='let article of articles; let i = index'>
+            <div [ngClass]="{'list-group-item:true, list-group-item-success': this.articles[i].nbLikes > 0,
+            'list-group-item-danger': this.articles[i].nbLikes < 0 }">
                 <h4>{{article.title}}</h4>
                 <p> Last update : {{dateUpdate | date : 'd/MM/YYYY'}} </p>
                 <p>{{article.content}} </p>
-                <button type='submit' class='btn btn-danger' (click)=clickDislike()>I Dislike </button>
-                <button class='btn btn-success' (click)=clickLike()> I Like</button>
+                <button type='submit' class='btn btn-danger' (click)=clickDislike(i)>Dislike </button>
+                <button type='submit' class='btn btn-success' (click)=clickLike(i)>Like</button>
             </div>
         </li>
     </ul>
